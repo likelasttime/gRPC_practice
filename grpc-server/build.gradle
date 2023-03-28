@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.9'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation project(':proto')
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compileOnly 'org.apache.tomcat:annotations-api:6.0.53' // necessary for Java 9+
+
+	// gRPC
+	implementation 'net.devh:grpc-spring-boot-starter:2.13.1.RELEASE'
+
+	// protobuf
+	implementation 'com.google.protobuf:protobuf-java:3.22.2'
+
+	// JUnit-Test-Framework
+	testImplementation("org.junit.jupiter:junit-jupiter-api")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+	// Grpc-Test-Support
+	testImplementation("io.grpc:grpc-testing")
+	// Spring-Test-Support (Optional)
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	// Mocking Framework (Optional)
+	testImplementation("org.mockito:mockito-all")
+
+	runtimeOnly 'com.h2database:h2'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
