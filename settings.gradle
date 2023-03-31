@@ -1,0 +1,2 @@
+rootProject.name = 'gradle-multi-modules'
+include 'grpc-client', 'grpc-server', 'proto'
